@@ -1,0 +1,23 @@
+{
+  "name": "willys-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./node_modules/selenium-cucumber-js/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Frivicktz/Willys-testing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Frivicktz/Willys-testing/issues"
+  },
+  "homepage": "https://github.com/Frivicktz/Willys-testing#readme",
+  "dependencies": {
+    "selenium-cucumber-js": "^1.8.1"
+  }
+}
