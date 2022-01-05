@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+    <testsuite name="the-shopping-cart-and-the-items-in-it-should-show-up;looking-at-my-added-items-in-the-shopping-cart" tests="6" failures="0" skipped="0">
+        <properties>
+            <property name="URI" value="D:/repositories/Willys-testing/features/shoppingCartItems.feature">
+            </property>
+        </properties>
+        <testcase name="Given that we are on Willy&apos;s website" classname="the-shopping-cart-and-the-items-in-it-should-show-up;looking-at-my-added-items-in-the-shopping-cart" time="1.4035617">
+        </testcase>
+        <testcase name="And that we accepted the standard cookie policy" classname="the-shopping-cart-and-the-items-in-it-should-show-up;looking-at-my-added-items-in-the-shopping-cart" time="1.0827703">
+        </testcase>
+        <testcase name="And that we have have been through the initial where to deliver popup" classname="the-shopping-cart-and-the-items-in-it-should-show-up;looking-at-my-added-items-in-the-shopping-cart" time="2.8802401">
+        </testcase>
+        <testcase name="Given that have added items to my shopping cart" classname="the-shopping-cart-and-the-items-in-it-should-show-up;looking-at-my-added-items-in-the-shopping-cart" time="1.0375007">
+        </testcase>
+        <testcase name="When I Enter the shopping cart" classname="the-shopping-cart-and-the-items-in-it-should-show-up;looking-at-my-added-items-in-the-shopping-cart" time="1.0530669">
+        </testcase>
+        <testcase name="Then I should be able to see the items i have added" classname="the-shopping-cart-and-the-items-in-it-should-show-up;looking-at-my-added-items-in-the-shopping-cart" time="0.0091537">
+        </testcase>
+    </testsuite>
+    <testsuite name="the-shopping-cart-and-the-items-in-it-should-show-up;the-shopping-cart-should-show-up-when-i-click-on-the-button-for-it" tests="6" failures="0" skipped="0">
+        <properties>
+            <property name="URI" value="D:/repositories/Willys-testing/features/shoppingCartItems.feature">
+            </property>
+        </properties>
+        <testcase name="Given that we are on Willy&apos;s website" classname="the-shopping-cart-and-the-items-in-it-should-show-up;the-shopping-cart-should-show-up-when-i-click-on-the-button-for-it" time="1.2896799">
+        </testcase>
+        <testcase name="And that we accepted the standard cookie policy" classname="the-shopping-cart-and-the-items-in-it-should-show-up;the-shopping-cart-should-show-up-when-i-click-on-the-button-for-it" time="0.9950524">
+        </testcase>
+        <testcase name="And that we have have been through the initial where to deliver popup" classname="the-shopping-cart-and-the-items-in-it-should-show-up;the-shopping-cart-should-show-up-when-i-click-on-the-button-for-it" time="2.6746453">
+        </testcase>
+        <testcase name="Given that it is the first time I am visiting the site" classname="the-shopping-cart-and-the-items-in-it-should-show-up;the-shopping-cart-should-show-up-when-i-click-on-the-button-for-it" time="1.0063926">
+        </testcase>
+        <testcase name="When I Enter the shopping cart" classname="the-shopping-cart-and-the-items-in-it-should-show-up;the-shopping-cart-should-show-up-when-i-click-on-the-button-for-it" time="1.0681687">
+        </testcase>
+        <testcase name="Then an empty shopping cart should show up" classname="the-shopping-cart-and-the-items-in-it-should-show-up;the-shopping-cart-should-show-up-when-i-click-on-the-button-for-it" time="0.0097721">
+        </testcase>
+    </testsuite>
+</testsuites>
