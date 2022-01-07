@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node ./node_modules/selenium-cucumber-js/index.js"
+    "test": "node ./node_modules/selenium-cucumber-js/index.js", 
+    "test-shopping-cart-items": "node ./node_modules/selenium-cucumber-js/index -f features/shopping-cart-items.feature"
   },
   "repository": {
     "type": "git",
