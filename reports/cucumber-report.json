@@ -1,0 +1,126 @@
+[
+  {
+    "description": "  As a customer\n  I want to be able to change the quantity in my cart so i can buy\n  more or less of the product.",
+    "elements": [
+      {
+        "id": "remove-item;chance-quantity",
+        "keyword": "Scenario",
+        "line": 11,
+        "name": "Chance quantity",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "www.willys.se is opened",
+            "result": {
+              "status": "passed",
+              "duration": 1712314300
+            },
+            "line": 7,
+            "match": {
+              "location": "C:\\Users\\hugob\\OneDrive\\Skrivbord\\Hugo\\step-definitions\\common-background.js:3"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "cookies has been accepted",
+            "result": {
+              "status": "passed",
+              "duration": 979619600
+            },
+            "line": 8,
+            "match": {
+              "location": "C:\\Users\\hugob\\OneDrive\\Skrivbord\\Hugo\\step-definitions\\common-background.js:10"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "that the delivery option was closed",
+            "result": {
+              "status": "passed",
+              "duration": 2969967800
+            },
+            "line": 9,
+            "match": {
+              "location": "C:\\Users\\hugob\\OneDrive\\Skrivbord\\Hugo\\step-definitions\\common-background.js:27"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "the category Skafferi was selected",
+            "result": {
+              "status": "passed",
+              "duration": 2084753700
+            },
+            "line": 12,
+            "match": {
+              "location": "C:\\Users\\hugob\\OneDrive\\Skrivbord\\Hugo\\step-definitions\\add-and-adjust.js:3"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "that a product was added to the basket",
+            "result": {
+              "status": "passed",
+              "duration": 1306518300
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\hugob\\OneDrive\\Skrivbord\\Hugo\\step-definitions\\add-and-adjust.js:13"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "the user clicks + on the quantity button",
+            "result": {
+              "status": "passed",
+              "duration": 1108885400
+            },
+            "line": 14,
+            "match": {
+              "location": "C:\\Users\\hugob\\OneDrive\\Skrivbord\\Hugo\\step-definitions\\add-and-adjust.js:35"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "the product should have products quantity should have been added by 1",
+            "result": {
+              "status": "passed",
+              "duration": 1033260300
+            },
+            "line": 15,
+            "match": {
+              "location": "C:\\Users\\hugob\\OneDrive\\Skrivbord\\Hugo\\step-definitions\\add-and-adjust.js:45"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 4174498100
+            },
+            "hidden": true,
+            "match": {
+              "location": "C:\\Users\\hugob\\OneDrive\\Skrivbord\\Hugo\\node_modules\\updated-selenium-cucumber-js\\runtime\\world.js:250"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "remove-item",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Remove item",
+    "tags": [],
+    "uri": "C:/Users/hugob/OneDrive/Skrivbord/Hugo/features/add-and-adjust.feature"
+  }
+]
