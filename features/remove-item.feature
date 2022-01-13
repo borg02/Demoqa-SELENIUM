@@ -7,7 +7,7 @@ Feature: Remove item
     Given www.willys.se is opened
     And cookies has been accepted
 
-  Scenario: Empty basket
+  Scenario: Remove item
     Given the category "Mejeri, ost & ägg" was selected
     And that a product was added to the basket
     And that the delivery option was closed
