@@ -12,7 +12,7 @@ module.exports = function () {
     // now wait for the button to be interactable (visible) before clicking
     // check if visible/displayed, wait 1/10 of a second then check again
     while (!(await cookieAcceptButton.isDisplayed())) {
-      await driver.sleep(100);
+      await driver.sleep(3000);
     }
     // the accept button exists and is visible so click it
     await cookieAcceptButton.click();
@@ -36,7 +36,7 @@ module.exports = function () {
     // Sleep a short while (needed if the scenario / next step
     // is loading a new url - otherwise the temp product might
     // get stuck in the cart instead of properly removed
-    await driver.sleep(1000);
+    await driver.sleep(3000);
   });
 
 }
