@@ -5,7 +5,7 @@ Feature: The shopping cart and the items in it should show up
 
 
 Background:
-  Given that we are on Willy's website
+  Given www.willys.se is opened
   And that we accepted the standard cookie policy
   And that we have have been through the initial where to deliver popup
 

@@ -1,13 +1,5 @@
 module.exports = function () {
 
-  // Background steps
-
-  this.Given('www.willys.se is opened', async function () {
-
-    // Go to willys home page
-    await helpers.loadPage('https://www.willys.se');
-
-  });
 
 
   this.Given('cookies has been accepted', async function () {
