@@ -37,9 +37,11 @@ After(function () {
 
 // Willys 1
 
-Given('www.willys.se is opened', async function () {
-  // Go to willys home page
-  await loadPage('https://www.willys.se');
+Given('Given demoqa.com text-box is opened', async function () {
+  // Go to demoqa home page
+  await loadPage('https://demoqa.com/text-box');
+
+  await driver.sleep(3000);
 });
 
 
