@@ -2,25 +2,18 @@
 
 var chromedriver = require('chromedriver');
 var selenium = require('selenium-webdriver');
+var chrome = require('selenium-webdriver/chrome');
 
 /**
  * Creates a Selenium WebDriver using Chrome as the browser
- * @returns {ThenableWebDriver} selenium web driver
  */
-module.exports = function() {
+module.exports = function () {
 
-    var driver = new selenium.Builder().withCapabilities({
-        browserName: 'chrome',
-        javascriptEnabled: true,
-        acceptSslCerts: true,
-        chromeOptions: {
-            args: ['start-maximized', 'disable-extensions'],
-            excludeSwitches: ['enable-logging'] // Re-enable this if you want more verbose logging. Usually not needed.
-        },
-        path: chromedriver.path
-    }).build();
+    var options = new chrome.Options();
+    options.excludeSwitches('enable-logging');
+    var driver = new selenium.Builder().forBrowser('chrome').withCapabilities(options).build();
 
-    driver.manage().window().maximize();
+    driver.manage().window().setRect({ width: 1024, height: 768 });
 
     return driver;
 };

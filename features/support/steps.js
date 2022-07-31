@@ -24,7 +24,8 @@ Before(function () {
   driver = new ChromeDriver();
 }, this);
 
-After(function () {
+After(async function () {
+  await driver.sleep(3000);
   return driver.quit();
 }, this);
 
@@ -32,151 +33,59 @@ After(function () {
 // STEP DEFINITIONS //
 //////////////////////
 
-// /^ = Start of regular expression
-// $/ = End of regular expression
+// demoqa.com/text-box
 
-// Willys 1
+Given('Given demoqa.com text-box is opened', { timeout: 60000 }, async function () {
 
-Given('Given demoqa.com text-box is opened', async function () {
-  // Go to demoqa home page
+  // Load the web page
   await loadPage('https://demoqa.com/text-box');
 
-  await driver.sleep(3000);
-});
+  // Remove the <footer> element
+  driver.executeScript('return document.getElementsByTagName("footer")[0].remove();');
 
-
-Given('cookies has been accepted', async function () {
-
-  await driver.wait(until.elementLocated(By.id("onetrust-accept-btn-handler")), 10000);
-
-  let cookieButton = await driver.findElement(By.id("onetrust-accept-btn-handler"));
-
-  while (!(await cookieButton.isDisplayed())) {
-    await driver.sleep(100);
-  }
-
-  cookieButton.click();
-  await driver.sleep(1000);
-});
-
-
-Given('the category {string} was selected', async function (string) {
-  let categoryLink = await driver.findElement(By.css("a[title='" + string + "']"));
-  categoryLink.click();
-
-  await driver.sleep(1000);
-});
-
-
-Given('that a product was added to the basket', async function () {
-  await driver.wait(until.elementLocated(By.css("button[title='Öka antal']")), 10000);
-
-  let addButtons = await driver.findElements(By.css("button[title='Öka antal']"));
-  let addButton = addButtons[0];
-  await addButton.click();
-
-  await driver.sleep(1000);
-});
-
-When('the user clicks Empty Basket', async function () {
-
-  let emptyButton = await driver.findElement(By.css("button[title='Töm Varukorgen']"));
-  emptyButton.click();
-
-  await driver.sleep(2000);
+  // Remove the "fixedban" div
+  driver.executeScript('return document.getElementById("fixedban")?.remove();');
 
 });
 
 
-When('the user clicks Empty in the confirmation dialog', async function () {
+Given('a text is filled into the full name field', { timeout: 60000 }, async function () {
 
-  let confirmButton = await driver.findElement(By.css("button[title='Töm']"));
-  confirmButton.click();
+  // Find the "Full Name" input field element (it has the id "userName")
+  let userNameElement = await driver.findElement(By.id("userName"));
 
-  await driver.sleep(2000);
-});
-
-
-Then('the basket is emptied', async function () {
-
-  let emptyBasketTextElement = await driver.findElement(By.css("div[data-testid='cart-preview'] h2"));
-
-  let text = await emptyBasketTextElement.getText();
-
-  expect(text).to.equal("Din varukorg är tom!");
-
-  await driver.sleep(2000);
+  // Type some text into the field
+  userNameElement.sendKeys("Hello world!");
 
 });
 
 
+When('the user clicks the submit button', { timeout: 60000 }, async function () {
 
-// Willys 2
+  // Find the "Submit" button
+  let submitButton = await driver.findElement(By.id("submit"));
 
-Given('that second product was added to the basket', async function () {
-  await driver.wait(until.elementLocated(By.css("button[title='Öka antal']")), 10000);
+  // Scroll the webpage so that the button is visible
+  await driver.executeScript("arguments[0].scrollIntoViewIfNeeded(true);", submitButton);
 
-  let addButtons = await driver.findElements(By.css("button[title='Öka antal']"));
-  let addButton = addButtons[1];
-  await addButton.click();
-
-  await driver.sleep(1000);
-
-});
-
-
-Given('that the delivery option was closed', async function () {
-  await driver.wait(until.elementLocated(By.css("div[data-testid='backdrop']")), 10000);
-
-  let backdrop = await driver.findElement(By.css("div[data-testid='backdrop']"));
-  backdrop.click();
-
-  await driver.sleep(1000);
-});
-
-
-Given('that third product was added to the basket', async function () {
-  await driver.wait(until.elementLocated(By.css("button[title='Öka antal']")), 10000);
-
-  let addButtons = await driver.findElements(By.css("button[title='Öka antal']"));
-  let addButton = addButtons[2];
-  await addButton.click();
-
-  await driver.sleep(1000);
+  // Click the button
+  await submitButton.click();
 
 });
 
 
-Given('that the basket is opened', async function () {
+Then('the text is displayed at the bottom of the form', { timeout: 60000 }, async function () {
 
-  let basketButton = await driver.findElement(By.css("a[href='https://www.willys.se/varukorg']"));
-  basketButton.click();
+  // Wait until the "name" element is visible at the bottom of the form (it has the id "name")
+  await driver.wait(until.elementLocated(By.id("name")), 10000);
 
-  await driver.sleep(2000);
-});
+  // Find the element by it's id
+  let nameElement = await driver.findElement(By.id("name"));
 
+  // Get the text from element
+  let text = await nameElement.getText();
 
-When('the user clicks on reduce button', async function () {
-  await driver.wait(until.elementLocated(By.css("button[aria-label='Minska antal']")), 10000);
-
-  let reduceButtons = await driver.findElements(By.css("button[aria-label='Minska antal']"));
-  await reduceButtons[0].click();
-
-  await driver.sleep(1000);
+  // Assert that the text is correct
+  expect(text).to.equal("Name:Hello world!");
 
 });
-
-
-Then('one product is removed from the basket', async function () {
-  await driver.sleep(2000);
-  let reduceButtons = await driver.findElements(By.css("button[aria-label='Minska antal']"));
-
-  let numberOfButtons = reduceButtons.length;
-
-  expect(numberOfButtons).to.equal(2);
-
-  await driver.sleep(2000);
-
-});
-
-
