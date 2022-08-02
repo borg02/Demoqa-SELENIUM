@@ -89,3 +89,51 @@ Then('the text is displayed at the bottom of the form', { timeout: 60000 }, asyn
   expect(text).to.equal("Name:Hello world!");
 
 });
+
+
+Given('an email adress is filled in', async function () {
+  // Find the "Email" input field element (it has the id "userEmail")
+  let userEmailElement = await driver.findElement(By.id("userEmail"));
+
+  // Type some text into the field
+  userEmailElement.sendKeys("hej@gmail.com");
+});
+
+
+Then('the email adress is displayed at the bottom of the form', async function () {
+  // Wait until the "email" element is visible at the bottom of the form (it has the id "email")
+  await driver.wait(until.elementLocated(By.id("email")), 10000);
+
+  // Find the element by it's id
+  let emailElement = await driver.findElement(By.id("email"));
+
+  // Get the text from element
+  let text = await emailElement.getText();
+
+  // Assert that the text is correct
+  expect(text).to.equal("Email:hej@gmail.com");
+});
+
+
+Given('an address is filled in the field', async function () {
+  // Find the "Current Address" input field element (it has the id "currentAddress")
+  let currentAddressElement = await driver.findElement(By.id("currentAddress"));
+
+  // Type some text into the field
+  currentAddressElement.sendKeys("Tagenevagen 29");
+});
+
+
+Then('the address is displayed at the bottom of the form', async function () {
+  // Wait until the "Current Address" element is visible at the bottom of the form (it has the id "currentAddress")
+  await driver.wait(until.elementLocated(By.id("currentAddress")), 10000);
+
+  // Find the element by a css selector: Find the element <p> inside an element with id="output"
+  let currentAddressElement = await driver.findElement(By.css("#output p"));
+
+  // Get the text from element
+  let text = await currentAddressElement.getText();
+
+  // Assert that the text is correct
+  expect(text).to.equal("Current Address :Tagenevagen 29");
+});
