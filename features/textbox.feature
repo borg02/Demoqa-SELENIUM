@@ -16,8 +16,13 @@ Feature: Text Box
     When the user clicks the submit button
     Then the email adress is displayed at the bottom of the form
 
-  Scenario: Fill in text in the current address field
+  Scenario: Fill in text in the address field
     Given an address is filled in the field
     When the user clicks the submit button
     Then the address is displayed at the bottom of the form
+
+  Scenario: Fill in text in the Permanent Address field
+    Given an permanent address is filled in the field
+    When the user clicks the submit button
+    Then the permanent address is displayed at the bottom of the form
 

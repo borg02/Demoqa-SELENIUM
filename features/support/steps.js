@@ -137,3 +137,55 @@ Then('the address is displayed at the bottom of the form', async function () {
   // Assert that the text is correct
   expect(text).to.equal("Current Address :Tagenevagen 29");
 });
+
+
+Given('an permanent address is filled in the field', async function () {
+  // Find the "Permanent Address" input field element (it has the id "permanentAddress")
+  let permanentAddressElement = await driver.findElement(By.id("permanentAddress"));
+
+  // Type some text into the field
+  permanentAddressElement.sendKeys("Tagenevagen 35");
+});
+
+
+Then('the permanent address is displayed at the bottom of the form', async function () {
+  await driver.wait(until.elementLocated(By.id("permanentAddress")), 10000);
+
+  // Find the element by a css selector: Find the element <p> inside an element with id="output"
+  let permanentAddressElement = await driver.findElement(By.css("#output p"));
+
+  // Get the text from element
+  let text = await permanentAddressElement.getText();
+
+  // Assert that the text is correct
+  expect(text).to.equal("Permananet Address :Tagenevagen 35");
+});
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Given('Given demoqa.com checkbox is opened', async function () {
+  // Load the web page
+  await loadPage('https://demoqa.com/checkbox');
+
+  // Remove the <footer> element
+  driver.executeScript('return document.getElementsByTagName("footer")[0].remove();');
+
+  // Remove the "fixedban" div
+  driver.executeScript('return document.getElementById("fixedban")?.remove();');
+});
+
+Given('the home folder is expanded', async function () {
+  let homeFolderButton = await driver.findElement(By.css("#tree-node ol button"));
+
+  // Click the button
+  await homeFolderButton.click();
+});
+
+When('the desktop checkbox is checked', async function () {
+  let desktopFolderButton = await driver.findElements(By.css("#tree-node ol button"));
+
+  // Click the button
+  await desktopFolderButton[1].click();
+});
