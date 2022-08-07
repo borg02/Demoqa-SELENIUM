@@ -184,8 +184,25 @@ Given('the home folder is expanded', async function () {
 });
 
 When('the desktop checkbox is checked', async function () {
-  let desktopFolderButton = await driver.findElements(By.css("#tree-node ol button"));
+  let desktopFolderCheckbox = await driver.findElement(By.xpath("//label[@for='tree-node-desktop']"));
 
-  // Click the button
-  await desktopFolderButton[1].click();
+  // Click the checkbox
+  await desktopFolderCheckbox.click();
+});
+
+Then('the folders inside desktop has also been checked', async function () {
+  await driver.wait(until.elementLocated(By.id("result")), 10000);
+
+  // Find the element by a css selector: Find the elements <span> inside an element with id="result"
+  let results = await driver.findElements(By.css("#result span"));
+
+  // Get the text from element
+  let result1 = await results[1].getText();
+  let result2 = await results[2].getText();
+  let result3 = await results[3].getText();
+
+  // Assert that the text is correct
+  expect(result1).to.equal("desktop");
+  expect(result2).to.equal("notes");
+  expect(result3).to.equal("commands");
 });
