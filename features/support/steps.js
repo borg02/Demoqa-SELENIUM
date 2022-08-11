@@ -206,3 +206,24 @@ Then('the folders inside desktop has also been checked', async function () {
   expect(result2).to.equal("notes");
   expect(result3).to.equal("commands");
 });
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+Given('Given demoqa.com automation-practice-form is opened', async function () {
+  // Load the web page
+  await loadPage('https://demoqa.com/automation-practice-form');
+
+  // Remove the <footer> element
+  driver.executeScript('return document.getElementsByTagName("footer")[0].remove();');
+
+  // Remove the "fixedban" div
+  driver.executeScript('return document.getElementById("fixedban")?.remove();');
+});
+
+Given('a text is filled into every field', async function () {
+  // Find the "First Name" input field element (it has the id "firstName")
+  let firstNameElement = await driver.findElement(By.id("firstName"));
+
+  // Type some text into the field
+  firstNameElement.sendKeys("Ida");
+});
