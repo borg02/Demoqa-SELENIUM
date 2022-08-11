@@ -247,14 +247,42 @@ Given('something is filled in to every field', async function () {
   // Type some text into the field
   firstNameElement.sendKeys("Ida");
 
-  // Find the "First Name" input field element (it has the id "firstName")
+  // Find the "Last Name" input field element (it has the id "lastName")
   let lastNameElement = await driver.findElement(By.id("lastName"));
+
+  // Type some text into the field
+  lastNameElement.sendKeys("Kresar");
 
   // Find the male gender element
   let genderElement = await driver.findElement(By.xpath("//label[@for='gender-radio-1']"));
 
   // Select a gender
   genderElement.click();
+
+  // Find the field element (it has the id "userNumber")
+  let userNumberElement = await driver.findElement(By.id("userNumber"));
+
+  // Type some text into the field
+  userNumberElement.sendKeys("1234567890");
+
+  // Find the text element
+  let dateOfBirthElement = await driver.findElement(By.id("dateOfBirthInput"));
+
+  // Type a date into the field
+  dateOfBirthElement.sendKeys("10 Nov 2002");
+
+  // Find the hobby element
+  let hobbyElement = await driver.findElement(By.xpath("//label[@for='hobbies-checkbox-1']"));
+
+  // Select a hobby
+  hobbyElement.click();
+
+  // Find the "Current Address" input field element (it has the id "currentaddress")
+  let addressElement = await driver.findElement(By.id("currentAddress"));
+
+  // Type some text into the field
+  addressElement.sendKeys("Regnbågen 9e");
+  
 });
 
 Given('an invalid number is filled into Mobile field', async function () {
