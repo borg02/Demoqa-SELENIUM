@@ -26,3 +26,8 @@ Feature: Text Box
     When the user clicks the submit button
     Then the permanent address is displayed at the bottom of the form
 
+  Scenario: Fill in an invalid Email Address into the Email field
+    Given an invalid email adress is filled in
+    When the user clicks the submit button
+    Then the a red border is shown
+

@@ -11,4 +11,6 @@ Feature: Check Box
     When the desktop checkbox is checked
     Then the folders inside desktop has also been checked
 
+  
+
 

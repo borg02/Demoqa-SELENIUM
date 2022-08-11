@@ -38,7 +38,7 @@ After(async function () {
 Given('Given demoqa.com text-box is opened', { timeout: 60000 }, async function () {
 
   // Load the web page
-  await loadPage('https://demoqa.com/text-box');
+  await loadPage('https://dummyqa.azurewebsites.net/text-box');
 
   // Remove the <footer> element
   driver.executeScript('return document.getElementsByTagName("footer")[0].remove();');
@@ -97,6 +97,25 @@ Given('an email adress is filled in', async function () {
 
   // Type some text into the field
   userEmailElement.sendKeys("hej@gmail.com");
+});
+
+
+Given('an invalid email adress is filled in', async function () {
+  // Find the "Email" input field element (it has the id "userEmail")
+  let userEmailElement = await driver.findElement(By.id("userEmail"));
+
+  // Type some text into the field
+  userEmailElement.sendKeys("hej");
+});
+
+
+Then('the a red border is shown', async function () {
+  // Find the "Email" input field element (it has the id "userEmail")
+  let userEmailElement = await driver.findElement(By.id("userEmail"));
+
+  // Get the classes
+  let classes = await userEmailElement.getAttribute("class");
+  expect(classes).to.contain("field-error");
 });
 
 
@@ -167,7 +186,7 @@ Then('the permanent address is displayed at the bottom of the form', async funct
 
 Given('Given demoqa.com checkbox is opened', async function () {
   // Load the web page
-  await loadPage('https://demoqa.com/checkbox');
+  await loadPage('https://dummyqa.azurewebsites.net/checkbox');
 
   // Remove the <footer> element
   driver.executeScript('return document.getElementsByTagName("footer")[0].remove();');
@@ -208,10 +227,11 @@ Then('the folders inside desktop has also been checked', async function () {
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Practice-form
 
 Given('Given demoqa.com automation-practice-form is opened', async function () {
   // Load the web page
-  await loadPage('https://demoqa.com/automation-practice-form');
+  await loadPage('https://dummyqa.azurewebsites.net/automation-practice-form');
 
   // Remove the <footer> element
   driver.executeScript('return document.getElementsByTagName("footer")[0].remove();');
@@ -220,10 +240,36 @@ Given('Given demoqa.com automation-practice-form is opened', async function () {
   driver.executeScript('return document.getElementById("fixedban")?.remove();');
 });
 
-Given('a text is filled into every field', async function () {
+Given('something is filled in to every field', async function () {
   // Find the "First Name" input field element (it has the id "firstName")
   let firstNameElement = await driver.findElement(By.id("firstName"));
 
   // Type some text into the field
   firstNameElement.sendKeys("Ida");
+
+  // Find the "First Name" input field element (it has the id "firstName")
+  let lastNameElement = await driver.findElement(By.id("lastName"));
+
+  // Find the male gender element
+  let genderElement = await driver.findElement(By.xpath("//label[@for='gender-radio-1']"));
+
+  // Select a gender
+  genderElement.click();
+});
+
+Given('an invalid number is filled into Mobile field', async function () {
+  // Find the field element (it has the id "userNumber")
+  let userNumberElement = await driver.findElement(By.id("userNumber"));
+
+  // Type some text into the field
+  userNumberElement.sendKeys("22");
+});
+
+Then('the mobile field displays an error', async function () {
+  // Find the field element (it has the id "userNumber")
+  let userNumberElement = await driver.findElement(By.id("userNumber"));
+
+  // Get the validationMessage
+  let validationMessage = await userNumberElement.getAttribute("validationMessage");
+  expect(validationMessage).to.contain("Please lengthen this text");
 });
