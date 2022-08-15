@@ -229,7 +229,7 @@ Then('the folders inside desktop has also been checked', async function () {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Practice-form
 
-Given('Given demoqa.com automation-practice-form is opened', async function () {
+Given('Given demoqa.com automation-practice-form is opened', { timeout: 60000 }, async function () {
   // Load the web page
   await loadPage('https://dummyqa.azurewebsites.net/automation-practice-form');
 
@@ -282,7 +282,18 @@ Given('something is filled in to every field', async function () {
 
   // Type some text into the field
   addressElement.sendKeys("Regnbågen 9e");
-  
+
+});
+
+Then('your form pops up', { timeout: 60000 }, async function () {
+  await driver.sleep(3000);
+  let namePopUpElement = await driver.findElement(By.xpath("//div[@class='table-responsive']/table/tbody/tr/td[2]"));
+
+  // Get the text from element
+  let nameText = await namePopUpElement.getText();
+
+  // Assert that the text is correct
+  expect(nameText).to.equal("Ida Kresar");
 });
 
 Given('an invalid number is filled into Mobile field', async function () {
@@ -299,5 +310,42 @@ Then('the mobile field displays an error', async function () {
 
   // Get the validationMessage
   let validationMessage = await userNumberElement.getAttribute("validationMessage");
-  expect(validationMessage).to.contain("Please lengthen this text");
+  expect(validationMessage).to.contain("Lägg till minst 10 tecken");
 });
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Radio Button
+
+Given('Given demoqa.com radio-button is opened', async function () {
+  // Load the web page
+  await loadPage('https://dummyqa.azurewebsites.net/radio-button/');
+
+  // Remove the <footer> element
+  driver.executeScript('return document.getElementsByTagName("footer")[0].remove();');
+
+  // Remove the "fixedban" div
+  driver.executeScript('return document.getElementById("fixedban")?.remove();');
+});
+
+Given('that a rating has been completed', async function () {
+  // Find the yes element
+  let yesElement = await driver.findElement(By.xpath("//label[@for='yesRadio']"));
+
+  // Select a rating 
+  yesElement.click();
+});
+
+Then('a text is displayed at the bottom of the form', async function () {
+  // Wait until the "Yes" element is visible at the bottom of the form (it has the id "currentAddress")
+  await driver.wait(until.elementLocated(By.id("currentAddress")), 5000);
+
+  // Find the element by a css selector: Find the element <p> inside an element with id="output"
+  let currentAddressElement = await driver.findElement(By.css("#output p"));
+
+  // Get the text from element
+  let text = await currentAddressElement.getText();
+
+  // Assert that the text is correct
+  expect(text).to.equal("Current Address :Tagenevagen 29");
+});
+
