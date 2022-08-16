@@ -184,7 +184,7 @@ Then('the permanent address is displayed at the bottom of the form', async funct
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-Given('Given demoqa.com checkbox is opened', async function () {
+Given('Given demoqa.com checkbox is opened', { timeout: 60000 }, async function () {
   // Load the web page
   await loadPage('https://dummyqa.azurewebsites.net/checkbox');
 
@@ -310,13 +310,13 @@ Then('the mobile field displays an error', async function () {
 
   // Get the validationMessage
   let validationMessage = await userNumberElement.getAttribute("validationMessage");
-  expect(validationMessage).to.contain("Lägg till minst 10 tecken");
+  expect(validationMessage).to.contain("Please lengthen this text");
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Radio Button
 
-Given('Given demoqa.com radio-button is opened', async function () {
+Given('Given demoqa.com radio-button is opened', { timeout: 60000 }, async function () {
   // Load the web page
   await loadPage('https://dummyqa.azurewebsites.net/radio-button/');
 
@@ -327,7 +327,7 @@ Given('Given demoqa.com radio-button is opened', async function () {
   driver.executeScript('return document.getElementById("fixedban")?.remove();');
 });
 
-Given('that a rating has been completed', async function () {
+Given('that a rating has been completed', { timeout: 60000 }, async function () {
   // Find the yes element
   let yesElement = await driver.findElement(By.xpath("//label[@for='yesRadio']"));
 
@@ -335,17 +335,16 @@ Given('that a rating has been completed', async function () {
   yesElement.click();
 });
 
-Then('a text is displayed at the bottom of the form', async function () {
-  // Wait until the "Yes" element is visible at the bottom of the form (it has the id "currentAddress")
-  await driver.wait(until.elementLocated(By.id("currentAddress")), 5000);
+Then('a text is displayed at the bottom of the form', { timeout: 60000 }, async function () {
+  // Wait until the "Yes" element is visible at the bottom of the form
+  await driver.wait(until.elementLocated(By.css(".text-success")), 10000);
 
   // Find the element by a css selector: Find the element <p> inside an element with id="output"
-  let currentAddressElement = await driver.findElement(By.css("#output p"));
+  let currentAddressElement = await driver.findElement(By.css(".text-success"));
 
   // Get the text from element
   let text = await currentAddressElement.getText();
 
   // Assert that the text is correct
-  expect(text).to.equal("Current Address :Tagenevagen 29");
+  expect(text).to.equal("Yes");
 });
-
